@@ -407,6 +407,7 @@ impl EventLoop {
                     primary: true,
                     position: (x, y).into(),
                     source: event::PointerSource::Mouse,
+                    time_stamp: 0.0,
                 });
             },
             EventOption::MouseRelative(MouseRelativeEvent { dx, dy }) => {

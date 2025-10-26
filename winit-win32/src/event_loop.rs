@@ -1597,6 +1597,7 @@ unsafe fn public_window_callback_inner(
                     primary: true,
                     position,
                     source: PointerSource::Mouse,
+                    time_stamp: 0.0,
                 });
             }
 
@@ -1977,6 +1978,7 @@ unsafe fn public_window_callback_inner(
                             primary,
                             position,
                             source: PointerSource::Touch { finger_id, force: None },
+                            time_stamp: 0.0,
                         });
                     } else {
                         continue;
@@ -2159,6 +2161,7 @@ unsafe fn public_window_callback_inner(
                             primary,
                             position,
                             source,
+                            time_stamp: 0.0,
                         });
                     } else {
                         continue;

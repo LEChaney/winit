@@ -248,7 +248,7 @@ impl ActiveEventLoop {
 
                 move |device_id, events| {
                     runner.send_events(events.flat_map(
-                        |(active_modifiers, primary, position, source)| {
+                        |(active_modifiers, primary, position, source, time_stamp)| {
                             let modifiers = (has_focus.get()
                                 && modifiers.get() != active_modifiers)
                                 .then(|| {
@@ -268,6 +268,7 @@ impl ActiveEventLoop {
                                     primary,
                                     position,
                                     source,
+                                    time_stamp,
                                 },
                             }))
                         },

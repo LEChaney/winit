@@ -373,7 +373,7 @@ impl Canvas {
             + FnMut(
                 Option<DeviceId>,
                 &mut dyn Iterator<
-                    Item = (ModifiersState, bool, PhysicalPosition<f64>, PointerSource),
+                    Item = (ModifiersState, bool, PhysicalPosition<f64>, PointerSource, f64),
                 >,
             ),
         B: 'static

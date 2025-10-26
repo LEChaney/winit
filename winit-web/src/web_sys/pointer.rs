@@ -177,7 +177,7 @@ impl PointerHandler {
             + FnMut(
                 Option<DeviceId>,
                 &mut dyn Iterator<
-                    Item = (ModifiersState, bool, PhysicalPosition<f64>, PointerSource),
+                    Item = (ModifiersState, bool, PhysicalPosition<f64>, PointerSource, f64),
                 >,
             ),
         B: 'static
@@ -256,6 +256,7 @@ impl PointerHandler {
                             event.is_primary(),
                             event::pointer_position(&event).to_physical(scale),
                             event::pointer_source(&event, kind),
+                            event.time_stamp(),
                         )
                     }),
                 );

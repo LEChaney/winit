@@ -181,6 +181,8 @@ pub enum WindowEvent {
         primary: bool,
 
         source: PointerSource,
+
+        time_stamp: f64,
     },
 
     /// The pointer has entered the window.
@@ -1467,6 +1469,7 @@ mod tests {
                 primary: true,
                 position: (0, 0).into(),
                 source: PointerSource::Mouse,
+                time_stamp: 0.0,
             });
             with_window_event(ModifiersChanged(event::Modifiers::default()));
             with_window_event(PointerEntered {
