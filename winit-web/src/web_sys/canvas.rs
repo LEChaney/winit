@@ -334,7 +334,7 @@ impl Canvas {
     pub fn on_pointer_leave<F>(&self, handler: F)
     where
         F: 'static
-            + FnMut(ModifiersState, Option<DeviceId>, bool, PhysicalPosition<f64>, PointerKind),
+            + FnMut(ModifiersState, Option<DeviceId>, bool, PhysicalPosition<f64>, PointerKind, f64),
     {
         self.handlers.borrow_mut().pointer_handler.on_pointer_leave(&self.common, handler)
     }
@@ -342,7 +342,7 @@ impl Canvas {
     pub fn on_pointer_enter<F>(&self, handler: F)
     where
         F: 'static
-            + FnMut(ModifiersState, Option<DeviceId>, bool, PhysicalPosition<f64>, PointerKind),
+            + FnMut(ModifiersState, Option<DeviceId>, bool, PhysicalPosition<f64>, PointerKind, f64),
     {
         self.handlers.borrow_mut().pointer_handler.on_pointer_enter(&self.common, handler)
     }
@@ -350,7 +350,7 @@ impl Canvas {
     pub fn on_pointer_release<C>(&self, handler: C)
     where
         C: 'static
-            + FnMut(ModifiersState, Option<DeviceId>, bool, PhysicalPosition<f64>, ButtonSource),
+            + FnMut(ModifiersState, Option<DeviceId>, bool, PhysicalPosition<f64>, ButtonSource, f64),
     {
         self.handlers.borrow_mut().pointer_handler.on_pointer_release(&self.common, handler)
     }
@@ -358,7 +358,7 @@ impl Canvas {
     pub fn on_pointer_press<C>(&self, handler: C)
     where
         C: 'static
-            + FnMut(ModifiersState, Option<DeviceId>, bool, PhysicalPosition<f64>, ButtonSource),
+            + FnMut(ModifiersState, Option<DeviceId>, bool, PhysicalPosition<f64>, ButtonSource, f64),
     {
         self.handlers.borrow_mut().pointer_handler.on_pointer_press(
             &self.common,
@@ -384,6 +384,7 @@ impl Canvas {
                 PhysicalPosition<f64>,
                 ElementState,
                 ButtonSource,
+                f64,
             ),
     {
         self.handlers.borrow_mut().pointer_handler.on_pointer_move(

@@ -1553,6 +1553,7 @@ unsafe fn public_window_callback_inner(
                             primary: true,
                             position,
                             kind: PointerKind::Mouse,
+                            time_stamp: 0.0,
                         });
 
                         // Calling TrackMouseEvent in order to receive mouse leave events.
@@ -1576,6 +1577,7 @@ unsafe fn public_window_callback_inner(
                             primary: true,
                             position: Some(position),
                             kind: PointerKind::Mouse,
+                            time_stamp: 0.0,
                         });
                     },
                     PointerMoveKind::None => drop(w),
@@ -1618,6 +1620,7 @@ unsafe fn public_window_callback_inner(
                 primary: true,
                 position: None,
                 kind: Mouse,
+                time_stamp: 0.0,
             });
 
             result = ProcResult::Value(0);
@@ -1725,6 +1728,7 @@ unsafe fn public_window_callback_inner(
                 state: Pressed,
                 position,
                 button: Left.into(),
+                time_stamp: 0.0,
             });
             result = ProcResult::Value(0);
         },
@@ -1748,6 +1752,7 @@ unsafe fn public_window_callback_inner(
                 state: Released,
                 position,
                 button: Left.into(),
+                time_stamp: 0.0,
             });
             result = ProcResult::Value(0);
         },
@@ -1771,6 +1776,7 @@ unsafe fn public_window_callback_inner(
                 state: Pressed,
                 position,
                 button: Right.into(),
+                time_stamp: 0.0,
             });
             result = ProcResult::Value(0);
         },
@@ -1794,6 +1800,7 @@ unsafe fn public_window_callback_inner(
                 state: Released,
                 position,
                 button: Right.into(),
+                time_stamp: 0.0,
             });
             result = ProcResult::Value(0);
         },
@@ -1817,6 +1824,7 @@ unsafe fn public_window_callback_inner(
                 state: Pressed,
                 position,
                 button: Middle.into(),
+                time_stamp: 0.0,
             });
             result = ProcResult::Value(0);
         },
@@ -1840,6 +1848,7 @@ unsafe fn public_window_callback_inner(
                 state: Released,
                 position,
                 button: Middle.into(),
+                time_stamp: 0.0,
             });
             result = ProcResult::Value(0);
         },
@@ -1867,8 +1876,8 @@ unsafe fn public_window_callback_inner(
                     1 => Back,
                     2 => Forward,
                     _ => Other(xbutton),
-                }
-                .into(),
+                }.into(),
+                time_stamp: 0.0,
             });
             result = ProcResult::Value(0);
         },
@@ -1896,8 +1905,8 @@ unsafe fn public_window_callback_inner(
                     1 => Back,
                     2 => Forward,
                     _ => Other(xbutton),
-                }
-                .into(),
+                }.into(),
+                time_stamp: 0.0,
             });
             result = ProcResult::Value(0);
         },
@@ -1950,6 +1959,7 @@ unsafe fn public_window_callback_inner(
                             primary,
                             position,
                             kind: PointerKind::Touch(finger_id),
+                            time_stamp: 0.0,
                         });
                         userdata.send_window_event(window, WindowEvent::PointerButton {
                             device_id: None,
@@ -1957,6 +1967,7 @@ unsafe fn public_window_callback_inner(
                             state: Pressed,
                             position,
                             button: Touch { finger_id, force: None },
+                            time_stamp: 0.0,
                         });
                     } else if util::has_flag(input.dwFlags, TOUCHEVENTF_UP) {
                         userdata.send_window_event(window, WindowEvent::PointerButton {
@@ -1965,12 +1976,14 @@ unsafe fn public_window_callback_inner(
                             state: Released,
                             position,
                             button: Touch { finger_id, force: None },
+                            time_stamp: 0.0,
                         });
                         userdata.send_window_event(window, WindowEvent::PointerLeft {
                             device_id: None,
                             primary,
                             position: Some(position),
                             kind: PointerKind::Touch(finger_id),
+                            time_stamp: 0.0,
                         });
                     } else if util::has_flag(input.dwFlags, TOUCHEVENTF_MOVE) {
                         userdata.send_window_event(window, WindowEvent::PointerMoved {
@@ -2119,6 +2132,7 @@ unsafe fn public_window_callback_inner(
                                 primary,
                                 position,
                                 kind,
+                                time_stamp: 0.0,
                             });
 
                             userdata.send_window_event(window, WindowEvent::PointerButton {
@@ -2127,6 +2141,7 @@ unsafe fn public_window_callback_inner(
                                 state: Pressed,
                                 position,
                                 button,
+                                time_stamp: 0.0,
                             });
                         } else {
                             userdata.send_window_event(window, WindowEvent::PointerButton {
@@ -2135,12 +2150,14 @@ unsafe fn public_window_callback_inner(
                                 state: Released,
                                 position,
                                 button,
+                                time_stamp: 0.0,
                             });
                             userdata.send_window_event(window, WindowEvent::PointerLeft {
                                 device_id: None,
                                 primary,
                                 position: Some(position),
                                 kind,
+                                time_stamp: 0.0,
                             });
                         }
                     } else if util::has_flag(pointer_info.pointerFlags, POINTER_FLAG_UPDATE) {

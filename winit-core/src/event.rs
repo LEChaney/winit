@@ -208,6 +208,8 @@ pub enum WindowEvent {
         primary: bool,
 
         kind: PointerKind,
+
+        time_stamp: f64,
     },
 
     /// The pointer has left the window.
@@ -234,6 +236,8 @@ pub enum WindowEvent {
         primary: bool,
 
         kind: PointerKind,
+
+        time_stamp: f64,
     },
 
     /// A mouse wheel movement or touchpad scroll occurred.
@@ -263,6 +267,8 @@ pub enum WindowEvent {
         primary: bool,
 
         button: ButtonSource,
+
+        time_stamp: f64,
     },
 
     /// Two-finger pinch gesture, often used for magnification.
@@ -1477,12 +1483,14 @@ mod tests {
                 primary: true,
                 position: (0, 0).into(),
                 kind: PointerKind::Mouse,
+                time_stamp: 0.0,
             });
             with_window_event(PointerLeft {
                 primary: true,
                 device_id: None,
                 position: Some((0, 0).into()),
                 kind: PointerKind::Mouse,
+                time_stamp: 0.0,
             });
             with_window_event(MouseWheel {
                 device_id: None,
@@ -1495,6 +1503,7 @@ mod tests {
                 state: event::ElementState::Pressed,
                 position: (0, 0).into(),
                 button: event::MouseButton::Other(0).into(),
+                time_stamp: 0.0,
             });
             with_window_event(PointerButton {
                 device_id: None,
@@ -1505,6 +1514,7 @@ mod tests {
                     finger_id: fid,
                     force: Some(event::Force::Normalized(0.0)),
                 },
+                time_stamp: 0.0,
             });
             with_window_event(PinchGesture {
                 device_id: None,

@@ -423,6 +423,7 @@ impl EventLoop {
                         state,
                         position: dpi::PhysicalPosition::default(),
                         button: button.into(),
+                        time_stamp: 0.0,
                     });
                 }
             },
@@ -464,6 +465,7 @@ impl EventLoop {
                         primary: true,
                         position: dpi::PhysicalPosition::default(),
                         kind: event::PointerKind::Mouse,
+                        time_stamp: 0.0,
                     }
                 } else {
                     event::WindowEvent::PointerLeft {
@@ -471,6 +473,7 @@ impl EventLoop {
                         primary: true,
                         position: None,
                         kind: event::PointerKind::Mouse,
+                        time_stamp: 0.0,
                     }
                 };
 
